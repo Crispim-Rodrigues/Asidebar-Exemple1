@@ -163,6 +163,7 @@ body{
 }
 .sidebar .links_name{
     opacity: 0;
+    width: calc(100% - 50px);
     pointer-events: none;
 }
 .sidebar.active .links_name{
