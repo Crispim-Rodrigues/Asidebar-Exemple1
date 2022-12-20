@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Aside bar</title>
+    </head>
+    <body>
+        <div class="sidebar">
+            <div class="logo_content">
+                <div class="logo">
+                    <i class='bx bxl-dev-to'></i>
+                    <div class="logo_name">MyRepertory</div>   
+                </div>
+                <i class='bx bx-menu' id="btn"></i>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <i class='bx bx-search'></i>
+                        <input type="text" placeholder="Search...">
+                    </a>
+                    <!-- <span class="tooltip">Search</span> -->
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a id="view" name="home" class="a" href="#home">
+                        <i class='bx bx-home-alt-2'></i>
+                        <span class="links_name">Home</span>
+                    </a>
+                    <!-- <span class="tooltip">Home</span> -->
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a id="view" name="presentation" class="a" href="#presentation">
+                        <i class='bx bxs-user'></i>
+                        <span class="links_name">Presentation</span>
+                    </a>
+                    <!-- <span class="tooltip">Presentation</span> -->
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a id="view" name="technologies" class="a" href="#technologies">
+                        <i class='bx bxs-network-chart'></i>
+                        <span class="links_name">Technologies</span>
+                    </a>
+                    <!-- <span class="tooltip">Technologies</span> -->
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a id="view" name="repertory" class="a" href="#repertory">
+                        <i class='bx bx-book-open'></i>
+                        <span class="links_name">Repertory</span>
+                    </a>
+                    <!-- <span class="tooltip">Repertory</span> -->
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <a id="view" name="contact" class="a" href="#contact">
+                        <i class='bx bxs-conversation'></i>
+                        <span class="links_name">Contact</span>
+                    </a>
+                    <!-- <span class="tooltip">Contact</span> -->
+                </li>
+            </ul>
+            <div class="profile_content">
+                <div class="profile">
+                    <div class="profile_details">
+                        <img src="./perfil.jpg" alt="" srcset="">
+                        <div class="name_job">
+                            <div class="name">Crispim Rodrigues</div>
+                            <div class="job">Front-End Developer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="home_content">
+            <div id="home" class="text home">
+                Home
+            </div>
+            <div id="presentation"  class="text presentation_main">
+                Presentation
+            </div>
+            <div id="technologies"  class="text technologies_main ">
+                Technologies
+            </div>
+            <div id="repertory" class="text repertory_main">
+                Repertory
+            </div>
+            <div id="contact" class="text contact_main">
+                Contact
+            </div>
+        </div>
+        <script>
+            function createObserver() {
+                let option = {
+                    rootMargin: '0px',
+                    threshold: 0.80
+                }
+                let observer = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        // Log if the element and if it's in the viewport
+                        if(entry.isIntersecting){
+                
+                           if(entry.target.id === "home")
+                            {for(element of view){
+                                if (element.name === "home"){
+                                    element.classList.add("activeview")
+                                }else{element.classList.remove("activeview")}
+                            }}else if(entry.target.id === "presentation")
+                            {for(element of view){
+                                if (element.name === "presentation"){
+                                    element.classList.add("activeview")
+                                }else{element.classList.remove("activeview")}
+                            }}else if(entry.target.id === "technologies")
+                            {for(element of view){
+                                if (element.name === "technologies"){
+                                    element.classList.add("activeview")
+                                }else{element.classList.remove("activeview")}
+                            }}else if(entry.target.id === "repertory")
+                            {for(element of view){
+                                if (element.name === "repertory"){
+                                    element.classList.add("activeview")
+                                }else{element.classList.remove("activeview")}
+                            }}else if(entry.target.id === "contact")
+                            {for(element of view){
+                                if (element.name === "contact"){
+                                    element.classList.add("activeview")
+                                }else{element.classList.remove("activeview")}
+                            }}
+
+                        }
+                    });
+                }, option);
+                
+                // The element to observe
+                let app = document.querySelectorAll('.text');
+                let view = document.querySelectorAll('#view');
+                // Attach it to the observer
+                for(element of app){observer.observe(element);}
+              }
+              createObserver()
+        </script>
+        <script>
+            let btn = document.querySelector("#btn");
+            let view = document.querySelectorAll("#view");
+            let sidebar = document.querySelector(".sidebar");
+            let searchBtn = document.querySelector(".bx-search");
+           
+            
+
+            if(sidebar.classList.contains('active')){
+                for(element of view){element.classList.remove('view')}
+            }else{for(element of view){element.classList.add('view')}}
+            
+            btn.onclick = ()=>{
+                sidebar.classList.toggle('active');
+                if(sidebar.classList.contains('active')){
+                    for(element of view){element.classList.remove('view')}
+                }else{for(element of view){element.classList.add('view')}}
+            }
+            searchBtn.onclick = ()=>{
+                sidebar.classList.toggle('active');
+                if(sidebar.classList.contains('active')){
+                    for(element of view){element.classList.remove('view')}
+                }else{for(element of view){element.classList.add('view')}}
+            }
+        </script>
+        
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    </body>
+</html>
